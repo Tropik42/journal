@@ -1,0 +1,17 @@
+.Tabs {
+    margin-left: 10%;
+    margin-right: 5%;
+}
+
+.listTab {
+    width: 25%;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-left: 5%;
+    margin-top: 2%;
+    padding: 0 1% 1% 1%;
+}
+
+h6 {
+    display: inline;
+}
