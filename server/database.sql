@@ -93,3 +93,4 @@ VALUES
 DELETE FROM lists WHERE list_id between 17 and 19
 DELETE FROM todo WHERE todo_id between 466 and 500;
 
+TEST
