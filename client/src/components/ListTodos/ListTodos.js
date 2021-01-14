@@ -12,12 +12,11 @@ export default class ListTodos extends Component {
     constructor(props) {
         super(props);
         this.onTodosGet = this.onTodosGet.bind(this);
-        this.onItsDelete = this.onItsDelete.bind(this);
         this.paginate = this.paginate.bind(this);
       }
 
     onTodosGet(response) {
-        this.props.onTodosGet(response.data);
+        this.props.onTodosChange(response.data);
     }  
 
     getTodos = async () => {
@@ -32,33 +31,10 @@ export default class ListTodos extends Component {
 
     paginate = (number) => {this.props.paginate(number)}
 
-    onItsDelete(id) {
-        const newTodos = [];
-        const todos = this.props.todos;
-        const newTodo = {}
-        todos.forEach(todo => {
-            if (todo.todo_id !== id) {
-            newTodos.push(todo)}
-            else {
-                newTodo.todo_id = todo.todo_id
-                newTodo.time = todo.time
-                newTodo.description = todo.description
-                newTodo.done = todo.done
-                newTodo.type = todo.type
-                newTodo.deleted = true
-                console.log(newTodo)
-                
-                newTodos.push(newTodo)
-            }
-        });
-        this.props.onItsDelete(newTodos)
-    } 
-
     deleteTodo = async (id) => {
 
         try {
             const moveToTrash = await axios.put(`/todos/to_trash/${id}`)
-            this.onItsDelete(id)
 
         } catch (err) {
             console.error(err.message)            
@@ -75,7 +51,7 @@ render() {
     <Fragment>
         <div className="tabcontent" id="All" style={{border: "none"}}>
             {" "}
-            <table className="table text-center">
+            <table className="text-center">
                 <thead>
                 <tr className="d-flex">
                     <th className="col-lg-2">Время</th>

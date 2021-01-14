@@ -1,15 +1,33 @@
+.con2 {
+    background: linear-gradient(to right, #ffefba, #ffffff);
+}
+
 .Tabs {
-    margin-left: 10%;
+    margin-left: 5%;
     margin-right: 5%;
 }
 
 .listTab {
-    width: 25%;
+    width: 45%;
     border: 1px solid grey;
     border-radius: 5px;
     margin-left: 5%;
     margin-top: 2%;
     padding: 0 1% 1% 1%;
+}
+
+.tab-head  {
+    display: block;
+    padding-right: 0 !important;
+    padding-top: 2%;
+}
+
+.tab-body {
+    display: block;
+}
+
+.btn-danger {
+    width: 44px;
 }
 
 h6 {

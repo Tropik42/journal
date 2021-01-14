@@ -13,7 +13,7 @@ export default class EditTypes extends Component {
 
     onDeleteType(id) {
         const newTypes = this.props.types.filter(type => type.type_id !== id)
-        this.props.onDeleteType(newTypes)
+        this.props.onChangeTypes(newTypes)
     }
 
     async deleteType (id) {
@@ -53,7 +53,7 @@ export default class EditTypes extends Component {
 
             <Fragment>
 
-            <button type="button" className="btn btn-default" data-toggle="modal" data-target="#editTypesModal">
+            <button type="button" className="btn btn-warning" data-toggle="modal" data-target="#editTypesModal">
                 <FontAwesomeIcon icon="edit" />
             </button>
 

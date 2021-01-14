@@ -64,10 +64,10 @@ export default class UnDoneTodos extends Component {
                 newSelectedTodos.push(newSelectedTodo)
             }
         })
-        this.props.onItsDone(newTodos, newSelectedTodos)
+        this.props.onTodosChange(newTodos, newSelectedTodos)
       } 
 
-   deleteTodo = async (id) => {
+   itsDone = async (id) => {
 
         try {
             const deleteTodo = await axios.put(`/todos/done/${id}`)
@@ -110,7 +110,7 @@ render() {
                             <td className="col-lg-1">
                                 <button
                                     className="btn bnt-danger"
-                                    onClick={()=>this.deleteTodo(todo.todo_id)}
+                                    onClick={()=>this.itsDone(todo.todo_id)}
                                 ><FontAwesomeIcon icon="check" />
                                 </button> 
                             </td>

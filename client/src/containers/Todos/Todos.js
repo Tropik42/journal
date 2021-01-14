@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 // import ReactDOM from 'react-dom'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faTimes, faPlus, faCheck, faEdit, faTrash, faTrashRestore } from '@fortawesome/free-solid-svg-icons'
+import { faTimes, faPlus, faCheck, faEdit, faTrash, faTrashRestore, faMinusSquare } from '@fortawesome/free-solid-svg-icons'
 
 import './Todos.css';
 
@@ -12,21 +12,16 @@ import UnDoneTodos from "../../components/UnDoneTodos/UnDoneTodos";
 import Trash from "../../components/Trash/Trash"
 import DoneTodos from "../../components/DoneTodos/DoneTodos";
 
-library.add(faTimes, faPlus, faCheck, faEdit, faTrash, faTrashRestore)
+library.add(faTimes, faPlus, faCheck, faEdit, faTrash, faTrashRestore, faMinusSquare)
 
 export default class Todos extends Component {
 
   constructor(props) {
     super(props);
-    this.onTodosGet = this.onTodosGet.bind(this);
+    this.onTodosChange = this.onTodosChange.bind(this);
     this.onNewTodos = this.onNewTodos.bind(this);
     this.onNewType = this.onNewType.bind(this);
-    this.onItsDone = this.onItsDone.bind(this);
-    this.onMoveToTrash = this.onMoveToTrash.bind(this);
-    this.onItsDelete = this.onItsDelete.bind(this);
-    this.onDeleteDoneTodo = this.onDeleteDoneTodo.bind(this);
-    this.onGetTypes = this.onGetTypes.bind(this);
-    this.onDeleteType = this.onDeleteType.bind(this);
+    this.onChangeTypes = this.onChangeTypes.bind(this);
     this.state = {
       todos: [],
       selectedTodos: [],
@@ -38,7 +33,7 @@ export default class Todos extends Component {
     }
   } 
 
-  onTodosGet(todos) {
+  onTodosChange(todos) {
     this.setState({
       todos: todos,
       selectedTodos: todos
@@ -73,36 +68,8 @@ export default class Todos extends Component {
     })
   }
 
-  onGetTypes(types) {
+  onChangeTypes(types) {
     this.setState({types});
-  }
-
-  onDeleteType(types) {
-    this.setState({types});
-  }
-
-  onItsDone(todos, selectedTodos) {
-    this.setState({
-      todos: todos,
-      selectedTodos: selectedTodos
-    });
-  }
-
-  onMoveToTrash(todos, selectedTodos) {
-    this.setState({
-      todos: todos,
-      selectedTodos: selectedTodos
-    });  
-    console.log('Работает')
-    
-  }
-
-  onItsDelete(todos) {
-    this.setState({todos});
-  }
-
-  onDeleteDoneTodo(todos) {
-    this.setState({todos})
   }
 
   onSelectType(e) {
@@ -158,13 +125,14 @@ render() {
   const currentListTodos = listTodos.slice(indexOfFirstTodo, indexOfLastTodo)
 
     return (    
+      <div className="todos container-fluid">
+
       <div className="container">
         
         <InputTodo 
           onNewTodos = {this.onNewTodos} 
-          onGetTypes = {this.onGetTypes}
+          onChangeTypes = {this.onChangeTypes}
           onNewType = {this.onNewType}
-          onDeleteType = {this.onDeleteType}
           types = {types}
         />  
             <div className="tab mt-3">
@@ -196,8 +164,7 @@ render() {
         <ListTodos
           todos={todos}
           listTodos={currentListTodos}
-          onTodosGet={this.onTodosGet}
-          onItsDelete = {this.onItsDelete}
+          onTodosChange={this.onTodosChange}
           todosPerPage={this.state.todosPerPage}
           totalTodos={listTodos.length}
           paginate={this.paginate}
@@ -206,19 +173,22 @@ render() {
           todos={todos}
           selectedTodos={selectedTodos}
           unDoneTodos={unDoneTodos}
-          onItsDone = {this.onItsDone}
+          onTodosChange = {this.onTodosChange}
         />
         <DoneTodos
           todos={todos}
           selectedTodos={selectedTodos}
           doneTodos={doneTodos}
-          onMoveToTrash = {this.onMoveToTrash}
+          onTodosChange = {this.onTodosChange}
         />            
         <Trash
           todos={todos}
+          selectedTodos={selectedTodos}
           deletedTodos={deletedTodos}
+          onTodosChange = {this.onTodosChange}
         />
-      </div>    
+      </div>  
+      </div>  
     )
   }
 }

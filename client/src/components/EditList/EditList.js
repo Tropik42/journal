@@ -123,7 +123,7 @@ export default class EditList extends Component {
                         console.log(this.state.description)                                      
                     }}
                     />
-                    <label htmlFor={`${id}editListTypeInput`}>Описание</label>
+                    <label htmlFor={`${id}editListTypeInput`}>Тип</label>
                     <input type='text' 
                     className="form-control" 
                     value={this.state.type} 

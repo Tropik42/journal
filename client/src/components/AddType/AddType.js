@@ -17,7 +17,7 @@ export default class AddType extends Component {
       this.props.onNewType(response);
     }
 
-    addNewType = async e => {
+    addNewType = async () => {
             try {
 
               // const newType = this.state.description
@@ -38,7 +38,7 @@ export default class AddType extends Component {
 
             <Fragment>
 
-            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            <button type="button" className="btn btn-success" data-toggle="modal" data-target="#exampleModal">
               <FontAwesomeIcon icon="plus" />
             </button>
             

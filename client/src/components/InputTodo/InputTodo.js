@@ -23,7 +23,7 @@ export default class InputTodo extends Component {
     }
 
     onGetTypes(response) {
-        this.props.onGetTypes(response.data)
+        this.props.onChangeTypes(response.data)
     }
 
     getTypes = async () => {
@@ -98,10 +98,10 @@ export default class InputTodo extends Component {
                     })}
                 />
                 <div className="input-group-append">
-                    <button className="btn btn-outline-secondary" type="button"
+                    <button className="btn btn-warning" type="button"
                         onClick={this.onClear}
                     >
-                        <FontAwesomeIcon icon="times" />
+                        <FontAwesomeIcon icon="times" /> 
                     </button>
                 </div>
             </div>
@@ -144,7 +144,7 @@ export default class InputTodo extends Component {
                 <div className="input-group-append">
                     <EditTypes
                         types={this.props.types}
-                        onDeleteType={this.props.onDeleteType}
+                        onChangeTypes={this.props.onChangeTypes}
                     />
                 </div>
             </div>

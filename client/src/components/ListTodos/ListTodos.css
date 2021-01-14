@@ -1,4 +1,30 @@
+
+
+table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    }
+
+tr {
+    margin: 1% 0 1% 0;
+    border-top: 1px solid white;
+    padding-top: 1%;    
+}
+
 .done {
     background-color: rgb(241, 239, 239);
     opacity: 30%;
 }
+
+.hasComment {
+    margin-bottom: 0;
+}
+
+.comment {
+    font-size: 14px;
+    font-style: italic;
+    text-align: left;
+    border-top: none;
+}
+

@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import axios from '../../axios/axios'
 import EditTodo from '../EditTodo/EditTodo'
 
+import './DoneTodos.css'
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default class DoneTodos extends Component {
     constructor(props) {
         super(props);
         this.onMoveToTrash = this.onMoveToTrash.bind(this);
-
-      }
+    }
 
     onMoveToTrash (id) {
         const newTodos = [];
@@ -27,7 +28,7 @@ export default class DoneTodos extends Component {
                 newTodo.deleted = true
                 console.log(newTodo)
                 
-                newTodos.push(newTodo)
+                newTodos.push(newTodo) 
             }
         })
 
@@ -49,7 +50,7 @@ export default class DoneTodos extends Component {
                 newSelectedTodos.push(newSelectedTodo)
             }
         })
-        this.props.onMoveToTrash(newTodos, newSelectedTodos)
+        this.props.onTodosChange(newTodos, newSelectedTodos)
     }
 
     moveToTrash = async (id) => {
@@ -61,29 +62,13 @@ export default class DoneTodos extends Component {
             console.error(err.message)            
         }
     }
-
-    
-    // onDeleteDoneTodo (id) { 
-    //     const newTodos = this.props.todos.filter(todo => todo.todo_id !== id)
-    //     this.props.onDeleteDoneTodo(newTodos)
-    // }
-
-    // deleteTodo = async (id) => {
-
-    //     try {
-    //         const deleteTodo = await axios.delete(`/todos/${id}`)
-    //         this.onDeleteDoneTodo(id)
-    //     } catch (err) {
-    //         console.error(err.message)            
-    //     }
-    // }
-
+ 
 render() { 
     
     return (
     <div className="tabcontent" id="Done" style={{border: "none"}}>
         {" "}
-        <table className="table text-center">
+        <table className="text-center">
             <thead>
             <tr className="d-flex">
                 <th className="col-lg-2">Время</th>
