@@ -14,19 +14,8 @@ app.use('/todos', routes.todos)
 app.use('/types', routes.types)
 //LISTS
 app.use('/lists', routes.lists)
-
-
 //LINKS
-app.get("/links", async (req, res) => {
-    try {
-        const allLinks = await pool.query("SELECT * FROM links ORDER BY link_id")
-        res.json(allLinks.rows)
-        console.log('Был получен запрос ссылок')
-    } catch (err) {
-        console.error(err)        
-    }
-})
-
+app.use('/links', routes.links)
 
 app.listen(3000, () => {
     console.log('Listening on 3000')    

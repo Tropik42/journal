@@ -2,6 +2,32 @@
     background: linear-gradient(to right, #141e30, #243b55);
 }
 
+.link {
+    width: 20%;
+    border: 1px solid grey;
+    border-radius: 5px;
+    margin-left: 2%;
+    margin-top: 1%;
+    /* padding: 1% 1% 0% 1%; */
+}
+
+.link:hover {
+    opacity: 50%;
+}
+
+.linkAdd {
+    height: 60px;
+    margin-left: 5%;
+    margin-top: 3%;
+}
+
+.linkAdd h3 {
+    color: yellow !important;
+    padding-top: 2%;
+    cursor: pointer;
+
+}
+
 h1 {
    color: white !important;
 }
