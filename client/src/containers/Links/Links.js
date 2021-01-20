@@ -2,10 +2,19 @@ import React, {Component} from 'react'
 import axios from '../../axios/axios'
 import './Links.css'
 
+import AddLink from  '../../components/AddLink/AddLink'
+
 export default class Links extends Component {
 
     state = {
         links: []
+    }
+
+    onAddNewLink = (response) => {
+        const newLink = response
+        const links = this.state.links
+        links.push(newLink)
+        this.setState({links})
     }
 
     getLinks = async () => {
@@ -25,15 +34,17 @@ export default class Links extends Component {
             <div className="links container-fluid">
             <div className="row">
                 <h1 className="mt-5 text-center">Закладки</h1> 
-                <div className="link linkAdd"><h3>Добавить закладку</h3></div>
+                <AddLink
+                    onAddNewLink = {this.onAddNewLink}
+                />
             </div>
             {this.state.links.map(link => (
-                <button className="link" key={link.link_id}>
+                <a className="link" href={link.link} key={link.link_id}>
                     <div className="d-flex flex-column">                  
                         <div><h3 className="float-left">{link.title}</h3><p className="float-right">{link.type}</p></div>
                         <div><p>{link.description}</p></div>    
                     </div>                 
-                </button>
+                </a>
             ))}
 
             </div>

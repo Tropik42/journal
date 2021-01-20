@@ -8,6 +8,7 @@ import {
 import Todos from './containers/Todos/Todos'
 import Links from './containers/Links/Links'
 import Lists from './containers/Lists/Lists'
+import Calendar from './containers/Calendar/Calendar'
 import { Component } from 'react';
 import './App.css'
 
@@ -24,6 +25,7 @@ export default class App extends Component {
               <Route history={history} path='/todos' component={Todos}/>
               <Route history={history} path='/links' component={Links}/>
               <Route history={history} path='/lists' component={Lists}/>
+              <Route history={history} path='/calendar' component={Calendar}/>
               <Redirect from='/' to='/todos'/>
             </Switch>
           </Layout>

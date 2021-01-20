@@ -1,31 +1,38 @@
 .links {
     background: linear-gradient(to right, #141e30, #243b55);
+    /* margin-bottom: 5%; */
+    height: 100vh;
 }
 
 .link {
     width: 20%;
-    border: 1px solid grey;
+    /* border: 1px solid grey; */
     border-radius: 5px;
     margin-left: 2%;
     margin-top: 1%;
     /* padding: 1% 1% 0% 1%; */
+    background-color: white;
+    border: none;
+    color: rgb(0, 0, 0);
+    padding: 20px 34px;
+    text-align: center;
+    /* text-decoration: none; */
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
 }
 
 .link:hover {
     opacity: 50%;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+
 }
 
 .linkAdd {
     height: 60px;
     margin-left: 5%;
     margin-top: 3%;
-}
-
-.linkAdd h3 {
-    color: yellow !important;
-    padding-top: 2%;
-    cursor: pointer;
-
 }
 
 h1 {

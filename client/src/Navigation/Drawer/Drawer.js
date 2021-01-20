@@ -7,6 +7,7 @@ const links = [
         {to: '/Todos', label: 'Зарубки', exact: true}, 
         {to: '/Links', label: 'Закладки', exact: false}, 
         {to: '/Lists', label: 'Списки', exact: false}, 
+        {to: '/Calendar', label: 'Календарь', exact: false}, 
     ]
 
     export default class Drawer extends Component {
