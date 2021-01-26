@@ -1,0 +1,27 @@
+const express = require('express');
+const router = express.Router();
+const pool = require('../db')
+
+//get all person
+router.get('/', async (req, res) => {    
+    try {
+        const allPersons = await pool.query("SELECT * FROM persons ORDER BY person_id")
+        res.json(allPersons.rows)
+        console.log('Был получен запрос людей')
+    } catch (err) {
+        console.error(err)        
+    }
+})
+//add new person
+router.post('/', async (req, res) => {
+    try {
+        const {title, description, type} = req.body
+        const newPerson = await pool.query("INSERT INTO persons (title, description, type) VALUES($1, $2, $3) RETURNING *",
+        [title, description, type])
+        res.json(newPerson.rows[0])
+    } catch (err) {
+        console.error(err)       
+    }
+})
+
+module.exports = router;

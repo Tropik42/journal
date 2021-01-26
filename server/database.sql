@@ -73,6 +73,7 @@ CREATE TABLE links(
     type VARCHAR(127)
 ); 
 
+
 INSERT INTO links (title, link, description, type)
 VALUES
 ('Test title', 'testlink', 'test description', 'test type');
@@ -86,6 +87,11 @@ CREATE TABLE lists(
     type VARCHAR(127)
 );
 
+--Увеличить число символом в описании до 2048
+ALTER TABLE lists
+ALTER COLUMN description 
+TYPE VARCHAR(2047);
+
 INSERT INTO lists (title, description, type)
 VALUES
 ('Test title', 'test description', 'test type');
@@ -94,4 +100,39 @@ DELETE FROM lists WHERE list_id between 17 and 19
 DELETE FROM todo WHERE todo_id between 466 and 500;
 DELETE FROM links WHERE link_id between 1 and 26;
 
-TEST
+
+
+--Таблица для календаря
+CREATE TABLE calendar(
+    calendar_id SERIAL PRIMARY KEY,
+    time TIMESTAMP(0) DEFAULT now(),
+    month VARCHAR(30),
+    days INT,
+    todo VARCHAR(2048)
+);
+
+INSERT INTO calendar (month, days, todo)
+VALUES
+('Janyary', '31', '');
+
+UPDATE calendar SET todo = 'test' WHERE calendar_id = 2;
+
+DELETE FROM calendar WHERE calendar_id = 1;
+
+--Таблица для людей
+CREATE TABLE persons(
+    person_id SERIAL PRIMARY KEY,
+    time TIMESTAMP(0) DEFAULT now(),
+    title VARCHAR(255),
+    description VARCHAR(2047),
+    type VARCHAR(127)
+);
+
+INSERT INTO persons (title, description, type)
+VALUES
+('Test title', 'test description', 'test type');
+
+DELETE FROM persons WHERE person_id = 1;
+
+DELETE FROM persons WHERE person_id between 1 and 26;
+

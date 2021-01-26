@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react'
-import axios from '../../axios/axios'
-import './AddList.css'
+import axios from '../../../axios/axios'
+import './AddPerson.css'
 
-export default class AddList extends Component {
+export default class AddPerson extends Component {
 
     constructor(props) {
         super(props);
-        this.onAddNewList = this.onAddNewList.bind(this);
+        this.onAddNewPerson = this.onAddNewPerson.bind(this);
         this.state = {
             title: '',
             description: '',
@@ -14,19 +14,19 @@ export default class AddList extends Component {
         }
       }
 
-    onAddNewList (response) {
-        this.props.onAddNewList(response);
+    onAddNewPerson (response) {
+        this.props.onAddNewPerson(response);
     }
  
-    addNewList = async () => {
+    addNewPerson = async () => {
         try {
             const body = {
                 title: this.state.title,
                 description: this.state.description,
                 type: this.state.type
             }
-            const response = await axios.post("/lists", body)
-            this.onAddNewList(response.data)
+            const response = await axios.post("/persons", body)
+            this.onAddNewPerson(response.data)
         } catch (err) {
             console.error(err.message)
         }
@@ -40,7 +40,7 @@ export default class AddList extends Component {
             <button 
                 className="addBtn btn btn-warning btn-lg" 
                 data-toggle="modal"
-                data-target="#addList"
+                data-target="#addPerson"
                 onClick={() => {
                     this.setState({
                         title: '',
@@ -50,12 +50,12 @@ export default class AddList extends Component {
                     }
                 }
             >
-                Добавить список
+                Добавить человека
             </button> 
     
             <div 
                 className="modal" 
-                id="addList"              
+                id="addPerson"              
             >
             <div className="modal-dialog">
                 <div className="modal-content">
@@ -114,13 +114,13 @@ export default class AddList extends Component {
                     </div>
     
                     <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" className="btn btn-secondary" data-dismiss="modal">Закрыть</button>
                     <button 
                       type="button" 
                       className="btn btn-primary"
-                      onClick={() => this.addNewList()}
+                      onClick={() => this.addNewPerson()}
                     >
-                      Save changes</button>
+                      Сохранить изменения</button>
                   </div>
     
             </div>

@@ -1,59 +1,35 @@
 import React, {Component} from 'react'
-// import axios from '../../axios/axios'
+import axios from '../../axios/axios'
 import './Calendar.css'
 
 import Month from '../../components/Calendar/Month/Month'
 export default class Calendar extends Component {
 
     state = {
-        months: [
-            {month: 'Janyary',
-            days: 31
-            },
-            {month: 'February',
-            days: 28
-            },
-            {month: 'March',
-            days: 31
-            },
-            {month: 'April',
-            days: 30
-            },
-            {month: 'May',
-            days: 31
-            },
-            {month: 'June',
-            days: 30
-            },
-            {month: 'Jule',
-            days: 31
-            },
-            {month: 'August',
-            days: 31
-            },
-            {month: 'September',
-            days: 30
-            },
-            {month: 'October',
-            days: 31
-            },
-            {month: 'November',
-            days: 30
-            },
-            {month: 'December',
-            days: 31
-            },
-
-        ]
+        calendar: []
     }
+
+    getCalendar = async () => {
+        try {
+            const calendar = await axios.get('/calendar')
+            this.setState({calendar: calendar.data})
+        } catch (err) {
+            console.error(err.message)
+        }
+    }
+
+    componentDidMount() {this.getCalendar()}    
 
     render() {
         return(
             <div>
-                {this.state.months.map(month => (
+                {this.state.calendar.map(month => (
                     <Month
                         month = {month.month}
-                        key = {month.month}
+                        key = {month.calendar_id}
+                        id = {month.calendar_id}
+                        days = {month.days}
+                        todo = {month.todo}
                     />
                 )                    
                 )}

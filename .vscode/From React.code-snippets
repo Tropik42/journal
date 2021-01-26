@@ -21,6 +21,14 @@
 		"body": [
 			"<div>$1</div>",			
 		],
-		"description": "Log output to console"
+		"description": "div"
+	},
+	"button": {
+		"scope": "javascript,typescript",
+		"prefix": "btn",
+		"body": [
+			"<button>$1</button>",			
+		],
+		"description": "button"
 	}
 }

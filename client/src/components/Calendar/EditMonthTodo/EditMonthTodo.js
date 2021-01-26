@@ -1,80 +1,71 @@
 import React, { Component, Fragment } from 'react'
-import axios from '../../axios/axios'
-import './EditList.css'
+// import axios from '../../axios/axios'
+import './EditMonthTodo.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default class EditList extends Component {
+export default class EditMonthTodo extends Component {
 
-    constructor(props) {
-        super(props);
-        this.onListUpdate = this.onListUpdate.bind(this);
-        this.state = {
-            title: '',
-            description: '',
-            type: ''
-        }
-      }
+    state = {
+        description: ''
+    }
 
-    onListUpdate(id) {
+    // onListUpdate(id) {
        
-        const newLists = [];
-        const lists = this.props.lists;
-        const newList = {};
-        lists.forEach(list => {
-            if (list.list_id !== id) {
-                newLists.push(list)
-            } else {
-                newList.list_id = this.props.list.list_id
-                newList.time = this.props.list.time
-                newList.title = this.state.title
-                newList.description = this.state.description
-                newList.type = this.state.type
-                // console.log(newList)
+    //     const newLists = [];
+    //     const lists = this.props.lists;
+    //     const newList = {};
+    //     lists.forEach(list => {
+    //         if (list.list_id !== id) {
+    //             newLists.push(list)
+    //         } else {
+    //             newList.list_id = this.props.list.list_id
+    //             newList.time = this.props.list.time
+    //             newList.title = this.state.title
+    //             newList.description = this.state.description
+    //             newList.type = this.state.type
+    //             // console.log(newList)
 
-                newLists.push(newList)
-                // console.log(newLists)
-            }
-        })
-        // console.log(newLists, lists, newList)        
+    //             newLists.push(newList)
+    //             // console.log(newLists)
+    //         }
+    //     })
+    //     // console.log(newLists, lists, newList)        
         
-        this.props.onListUpdate(newLists)    
-        // console.log('Работает')     
-    }
+    //     this.props.onListUpdate(newLists)    
+    //     // console.log('Работает')     
+    // }
 
-    listUpdate = async (id) => {
-        const body = this.state
+    // listUpdate = async (id) => {
+    //     const body = this.state
 
-        const response = await axios.put(`/lists/${id}`, body)
-        this.onListUpdate(id)
-        //console.log(response)
-    }
+    //     const response = await axios.put(`/lists/${id}`, body)
+    //     this.onListUpdate(id)
+    //     //console.log(response)
+    // }
 
     
 
     render() {
 
-        const id = this.props.list.list_id
+        const id = this.props.id
 
         return (
-            <Fragment>            
-                
-            <button 
-                className="btn btn-primary float-right" 
-                data-toggle="modal"
-                data-target={`#id${id}`}
-                onClick={() => {
-                    this.setState({
-                        title: this.props.list.title,
-                        description: this.props.list.description,
-                        type: this.props.list.type
-                    })
+            <Fragment>           
+                <button 
+                    className="btn btn-warning"
+                    data-toggle="modal"
+                    data-target={`#id${id}`}
+                    onClick={() => {
+                        this.setState({
+                            description: '',
+                        })
+                        }
                     }
-                }
-            >
-                <FontAwesomeIcon icon="edit" />
-            </button> 
     
+                >
+                    <FontAwesomeIcon icon="edit" />
+                </button>
             <div 
                 className="modal" 
                 id={`id${id}`}                
@@ -103,20 +94,20 @@ export default class EditList extends Component {
                     <label htmlFor={`${id}editListTitleInput`}>Заголовок</label>
                     <input type='text' 
                     className="form-control" 
-                    value={this.state.title} 
+                    // value={this.state.title} 
                     id={`${id}editListTitleInput`}
-                    onChange={e => {
-                    this.setState({
-                        title: e.target.value})      
-                        console.log(this.state.title)                                      
-                    }}
+                    // onChange={e => {
+                    // this.setState({
+                    //     title: e.target.value})      
+                    //     console.log(this.state.title)                                      
+                    // }}
                     />
                     <label htmlFor={`${id}editListDescriptionInput`}>Описание</label>
                     <textarea 
                     type='text' 
                     className="form-control" 
                     rows="15"
-                    value={this.state.description} 
+                    // value={this.state.description} 
                     id={`${id}editListDescriptionInput`}
                     onChange={e => {
                     this.setState({
@@ -127,7 +118,7 @@ export default class EditList extends Component {
                     <label htmlFor={`${id}editListTypeInput`}>Тип</label>
                     <input type='text' 
                     className="form-control" 
-                    value={this.state.type} 
+                    // value={this.state.type} 
                     id={`${id}editListTypeInput`}
                     onChange={e => {
                     this.setState({

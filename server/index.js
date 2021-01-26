@@ -16,6 +16,11 @@ app.use('/types', routes.types)
 app.use('/lists', routes.lists)
 //LINKS
 app.use('/links', routes.links)
+//CALENDAR
+app.use('/calendar', routes.calendar)
+//PEOPLES
+app.use('/persons', routes.persons)
+
 
 app.listen(3000, () => {
     console.log('Listening on 3000')    
