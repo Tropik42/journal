@@ -68,7 +68,7 @@ export default class Lists extends Component {
                             >
                                 <FontAwesomeIcon icon="times" />
                             </button> 
-                        </div>
+                        </div> 
                         <div className="tab-body">
                             <pre>{list.description}</pre>
                         </div>

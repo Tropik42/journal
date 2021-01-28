@@ -20,6 +20,7 @@ router.put('/:id', async (req, res) => {
         "UPDATE calendar SET todo = $1 WHERE calendar_id = $2",
         [todo, id])
     res.json("Обновлено")
+    console.log(id, todo);
     } catch (err) {
         console.error(err.message)
     }

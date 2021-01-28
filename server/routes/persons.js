@@ -23,5 +23,16 @@ router.post('/', async (req, res) => {
         console.error(err)       
     }
 })
+//edit person
+router.put('/:id', async (req, res) => {
+    try {
+        const {id} = req.params
+        const {title, description, type} = req.body
+        await pool.query("UPDATE persons SET title = $1, description = $2, type = $3 WHERE person_id = $4", [title, description, type, id])
+        res.json("Информация о персоне обновлена")
+    } catch (err) {
+        console.error(err)        
+    }
+})
 
 module.exports = router;

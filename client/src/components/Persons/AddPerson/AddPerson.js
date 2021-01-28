@@ -4,18 +4,11 @@ import './AddPerson.css'
 
 export default class AddPerson extends Component {
 
-    constructor(props) {
-        super(props);
-        this.onAddNewPerson = this.onAddNewPerson.bind(this);
-        this.state = {
-            title: '',
-            description: '',
-            type: ''
-        }
-      }
 
-    onAddNewPerson (response) {
-        this.props.onAddNewPerson(response);
+    state = {
+        title: '',
+        description: '',
+        type: ''
     }
  
     addNewPerson = async () => {
@@ -26,7 +19,7 @@ export default class AddPerson extends Component {
                 type: this.state.type
             }
             const response = await axios.post("/persons", body)
-            this.onAddNewPerson(response.data)
+            this.props.onAddNewPerson(response.data)
         } catch (err) {
             console.error(err.message)
         }

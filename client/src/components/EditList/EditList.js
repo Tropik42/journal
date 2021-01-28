@@ -20,7 +20,7 @@ export default class EditList extends Component {
        
         const newLists = [];
         const lists = this.props.lists;
-        const newList = {};
+        const newList = {}; 
         lists.forEach(list => {
             if (list.list_id !== id) {
                 newLists.push(list)

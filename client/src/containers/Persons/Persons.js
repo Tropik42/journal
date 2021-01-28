@@ -2,6 +2,7 @@ import React from 'react'
 import { Component } from 'react';
 import axios from '../../axios/axios'
 import AddPerson from '../../components/Persons/AddPerson/AddPerson'
+import EditPerson from '../../components/Persons/EditPerson/EditPeson'
 
 import './Persons.css'
 
@@ -9,16 +10,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export default class Persons extends Component {
 
-    constructor(props) {
-        super(props);
-        // this.onListUpdate = this.onListUpdate.bind(this);        
-        this.onAddNewPerson = this.onAddNewPerson.bind(this);        
-        this.state = {
+      
+    state = {
             persons: []
         }
-      }   
-
-    // onListUpdate(lists) {this.setState({lists})}
 
     getPersons = async () => {        
         try {
@@ -31,7 +26,7 @@ export default class Persons extends Component {
         }
     }
 
-    onAddNewPerson(response) {
+    onAddNewPerson = (response) => {
         var newState = this.state.persons
         newState.push(response)
         this.setState({
@@ -72,11 +67,10 @@ export default class Persons extends Component {
                         </div>
                         <div className="tab-footer">
                             <h6 className="float-left ">Тип: {person.type}</h6>
-                            {/* <EditList 
-                                list={person}
-                                lists={this.state.persons}
-                                onListUpdate={this.onListUpdate}
-                            />      */}
+                            <EditPerson 
+                                person={person}
+                                onPersonUpdate={this.onPersonUpdate}
+                            />      
                         </div>                
                     </div>
                 ))}

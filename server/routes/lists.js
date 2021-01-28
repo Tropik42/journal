@@ -28,9 +28,8 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
     const {id} = req.params
     const {title, description, type} = req.body
-    const updateList = await pool.query(
-        "UPDATE lists SET title = $1, description = $2, type = $3 WHERE list_id = $4",
-        [title, description, type, id])
+    await pool.query(
+        "UPDATE lists SET title = $1, description = $2, type = $3 WHERE list_id = $4", [title, description, type, id])
     res.json("Обновлено")
 })
 //delete list

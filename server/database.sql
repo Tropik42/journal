@@ -134,5 +134,5 @@ VALUES
 
 DELETE FROM persons WHERE person_id = 1;
 
-DELETE FROM persons WHERE person_id between 1 and 26;
+DELETE FROM persons WHERE person_id between 15 and 24;
 

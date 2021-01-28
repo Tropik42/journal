@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-// import axios from '../../axios/axios'
+import axios from '../../../axios/axios'
 import './EditMonthTodo.css'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,42 +7,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export default class EditMonthTodo extends Component {
 
     state = {
-        description: ''
+        todo: this.props.todo
+    }    
+
+    monthUpdate = async (id) => {
+        const todo = this.state
+        await axios.put(`/calendar/${id}`, todo)
+        this.props.onCalendarUpdate(id, this.state.todo)
+        // console.log(id, todo)
     }
-
-    // onListUpdate(id) {
-       
-    //     const newLists = [];
-    //     const lists = this.props.lists;
-    //     const newList = {};
-    //     lists.forEach(list => {
-    //         if (list.list_id !== id) {
-    //             newLists.push(list)
-    //         } else {
-    //             newList.list_id = this.props.list.list_id
-    //             newList.time = this.props.list.time
-    //             newList.title = this.state.title
-    //             newList.description = this.state.description
-    //             newList.type = this.state.type
-    //             // console.log(newList)
-
-    //             newLists.push(newList)
-    //             // console.log(newLists)
-    //         }
-    //     })
-    //     // console.log(newLists, lists, newList)        
-        
-    //     this.props.onListUpdate(newLists)    
-    //     // console.log('Работает')     
-    // }
-
-    // listUpdate = async (id) => {
-    //     const body = this.state
-
-    //     const response = await axios.put(`/lists/${id}`, body)
-    //     this.onListUpdate(id)
-    //     //console.log(response)
-    // }
 
     
 
@@ -53,15 +26,15 @@ export default class EditMonthTodo extends Component {
         return (
             <Fragment>           
                 <button 
-                    className="btn btn-warning"
+                    className="btn btn-warning main"
                     data-toggle="modal"
                     data-target={`#id${id}`}
-                    onClick={() => {
-                        this.setState({
-                            description: '',
-                        })
-                        }
-                    }
+                    // onClick={() => {
+                    //     this.setState({
+                    //         todo: '',
+                    //     })
+                    //     }
+                    // }
     
                 >
                     <FontAwesomeIcon icon="edit" />
@@ -90,42 +63,19 @@ export default class EditMonthTodo extends Component {
                 </div>
     
                 <div className="modal-body">
-
-                    <label htmlFor={`${id}editListTitleInput`}>Заголовок</label>
-                    <input type='text' 
-                    className="form-control" 
-                    // value={this.state.title} 
-                    id={`${id}editListTitleInput`}
-                    // onChange={e => {
-                    // this.setState({
-                    //     title: e.target.value})      
-                    //     console.log(this.state.title)                                      
-                    // }}
-                    />
+                    
                     <label htmlFor={`${id}editListDescriptionInput`}>Описание</label>
                     <textarea 
                     type='text' 
                     className="form-control" 
                     rows="15"
-                    // value={this.state.description} 
+                    value={this.state.todo} 
                     id={`${id}editListDescriptionInput`}
                     onChange={e => {
                     this.setState({
-                        description: e.target.value})      
-                        console.log(this.state.description)                                      
+                        todo: e.target.value})      
                     }}
-                    />
-                    <label htmlFor={`${id}editListTypeInput`}>Тип</label>
-                    <input type='text' 
-                    className="form-control" 
-                    // value={this.state.type} 
-                    id={`${id}editListTypeInput`}
-                    onChange={e => {
-                    this.setState({
-                        type: e.target.value})      
-                        console.log(this.state.type)                                      
-                    }}
-                    />
+                    />                    
                     
                     </div>
     
@@ -134,7 +84,7 @@ export default class EditMonthTodo extends Component {
                         type="button" 
                         className="btn btn-warning" 
                         data-dismiss="modal"
-                        onClick={() => this.listUpdate(this.props.list.list_id)}
+                        onClick={() => this.monthUpdate(this.props.id)}
                     >
                         Сохранить
                     </button>
@@ -144,9 +94,7 @@ export default class EditMonthTodo extends Component {
                         data-dismiss="modal"
                         onClick={() => 
                             this.setState({
-                                title: this.props.list.title,
-                                description: this.props.list.description,
-                                type: this.props.list.type
+                                todo: this.state.todo,
                             })
                         }
                     >

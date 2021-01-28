@@ -9,6 +9,25 @@ export default class Calendar extends Component {
         calendar: []
     }
 
+    onCalendarUpdate = (id, todo) => {
+       
+        const newCalendar = [];
+        const calendar = this.state.calendar;
+        let newMonth = {};
+        calendar.forEach(month => {
+            if (month.calendar_id !== id) {
+                newCalendar.push(month)
+            } else {
+                newMonth = {
+                    ...month,
+                    todo: todo
+                };
+                newCalendar.push(newMonth)
+            }
+        })        
+        this.setState({calendar: newCalendar})
+    }
+
     getCalendar = async () => {
         try {
             const calendar = await axios.get('/calendar')
@@ -30,6 +49,7 @@ export default class Calendar extends Component {
                         id = {month.calendar_id}
                         days = {month.days}
                         todo = {month.todo}
+                        onCalendarUpdate = {this.onCalendarUpdate}
                     />
                 )                    
                 )}

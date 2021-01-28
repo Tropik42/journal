@@ -32,9 +32,11 @@ export default class Month extends Component {
                         </ul>
                         <EditMonthTodo
                             id = {this.props.id}
+                            todo = {this.props.todo}
+                            onCalendarUpdate = {this.props.onCalendarUpdate}
                         />
                     </div>
-                    <div className="col-lg-8">{this.props.todo}</div> 
+                    <div className="col-lg-8"><pre>{this.props.todo}</pre></div> 
                 </div>
                 </div>
 
