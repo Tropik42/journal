@@ -13,6 +13,10 @@ router.get('/', async (req, res) => {
         console.error(err)        
     }
 })
+router.get('/test', async (req, res) => {
+    console.log('test ok')
+    res.json('test ok')
+})
 //add new todo
 router.post('/', async (req, res) => {
     try {

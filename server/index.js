@@ -6,7 +6,7 @@ const routes = require('./routes')
 
 //middleware
 app.use(cors())
-app.use(express.json())
+app.use(express.json()) 
 
 //TODOS
 app.use('/todos', routes.todos)
