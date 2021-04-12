@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
         console.error(err)        
     }
 })
+
 //add new person
 router.post('/', async (req, res) => {
     try {
@@ -23,6 +24,7 @@ router.post('/', async (req, res) => {
         console.error(err)       
     }
 })
+
 //edit person
 router.put('/:id', async (req, res) => {
     try {

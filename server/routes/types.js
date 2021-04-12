@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
         console.error(err)        
     }
 })
+
 //add new type
 router.post('/', async (req, res) => {
     try {
@@ -26,6 +27,7 @@ router.post('/', async (req, res) => {
         
     }
 })
+
 //delete type
 router.delete('/delete/:id', async (req, res) => {
     try {

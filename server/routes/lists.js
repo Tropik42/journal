@@ -3,8 +3,7 @@ const router = express.Router();
 const pool = require('./../db')
 
 //get all lists
-router.get('/', async (req, res) => {
-    
+router.get('/', async (req, res) => {    
     try {
         const allLists = await pool.query("SELECT * FROM lists ORDER BY list_id")
         res.json(allLists.rows)
@@ -13,6 +12,7 @@ router.get('/', async (req, res) => {
         console.error(err)        
     }
 })
+
 //add new list
 router.post('/', async (req, res) => {
     try {
@@ -24,6 +24,7 @@ router.post('/', async (req, res) => {
         console.error(err)       
     }
 })
+
 //edit list
 router.put('/:id', async (req, res) => {
     const {id} = req.params
@@ -32,6 +33,7 @@ router.put('/:id', async (req, res) => {
         "UPDATE lists SET title = $1, description = $2, type = $3 WHERE list_id = $4", [title, description, type, id])
     res.json("Обновлено")
 })
+
 //delete list
 router.delete('/:id', async (req, res) => {
     const {id} = req.params

@@ -7,27 +7,27 @@ router.get('/', async (req, res) => {
     try {
         const allTodos = await pool.query("SELECT * FROM todo ORDER BY todo_id")
         res.json(allTodos.rows)
-        console.log('Был получен запрос заметок')
-        
+        console.log('Был получен запрос заметок')        
     } catch (err) {
         console.error(err)        
     }
 })
+
 router.get('/test', async (req, res) => {
     console.log('test ok')
-    res.json('test ok')
+    // res.json('test ok')
+    res.status(200).send('test ok')
 })
+
 //add new todo
 router.post('/', async (req, res) => {
     try {
         const {description, type, comment} = req.body
-
         const now = new Date()
         // const time = `${now.getFullYear()}-${now.getDate()}-${now.getMonth()+1} ${now.getHours()}:${now.getMinutes().toString().length > 1 ? now.getMinutes() : '0' + now.getMinutes()}:${now.getSeconds().toString().length > 1 ? now.getSeconds() : '0' + now.getSeconds()}`
         const time = now.getFullYear() + "-" + 
         (now.getDate().toString().length > 1 ? now.getDate() : '0' + now.getDate()) + "-" + 
         (now.getMonth().toString().length > 1 ? (now.getMonth() + 1) : '0' + (now.getMonth() + 1)) + " " + 
-
         (now.getHours().toString().length > 1 ? now.getHours() : '0' + now.getHours()) + ":" + 
         (now.getMinutes().toString().length > 1 ? now.getMinutes() : '0' + now.getMinutes()) + ":" + 
         (now.getSeconds().toString().length > 1 ? now.getSeconds() : '0' + now.getSeconds())
@@ -35,12 +35,12 @@ router.post('/', async (req, res) => {
         const newTodo = await pool.query("INSERT INTO todo (time, description, type, comment) VALUES($1, $2, $3, $4) RETURNING *",
         [time, description, type, comment])
         res.json(newTodo.rows[0])
-        console.log(newTodo.rows[0])
-        
+        console.log(newTodo.rows[0])        
     } catch (err) {
         console.error(err.message)        
     }
 })
+
 //update todos
 router.put('/:id', async (req, res) => {
     const {id} = req.params
@@ -50,6 +50,7 @@ router.put('/:id', async (req, res) => {
         [description, type, id])
     res.json("Обновлено")
 })
+
 //update todo to done
 router.put('/done/:id', async (req, res) => {
     const {id} = req.params
@@ -58,6 +59,7 @@ router.put('/done/:id', async (req, res) => {
         [id])
     res.json("Выполнено")
 })
+
 //update todo to deleted
 router.put('/to_trash/:id', async (req, res) => {
     const {id} = req.params
@@ -66,6 +68,7 @@ router.put('/to_trash/:id', async (req, res) => {
         [id])
     res.json("Выполнено")
 })
+
 //restore from trash
 router.put('/restore/:id', async (req, res) => {
     const {id} = req.params
@@ -74,6 +77,7 @@ router.put('/restore/:id', async (req, res) => {
         [id])
     res.json(`Заметка с id ${id} восстановлена из корзины`)
 })
+
 //delete todo
 router.delete('/:id', async (req, res) => {
     try {
@@ -82,9 +86,7 @@ router.delete('/:id', async (req, res) => {
         const deleteTodo = await pool.query("DELETE FROM todo WHERE todo_id = $1", [
             id
         ])
-
-        res.json(`Todo with id = ${id} was deleted`)
-        
+        res.json(`Todo with id = ${id} was deleted`)        
     } catch (err) {
         console.error(err.message)
         
