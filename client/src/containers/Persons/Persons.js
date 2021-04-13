@@ -34,6 +34,27 @@ export default class Persons extends Component {
         })
       } 
 
+    onPersonUpdate = (id, body) => {
+        const state = this.state.persons;
+        const persons = [];
+        let newPerson = {};
+        state.forEach(person => {
+            if (person.person_id !== id) {
+                persons.push(person)
+            } else {
+                newPerson = {
+                    ...person,
+                    title: body.title,
+                    type: body.type,
+                    description: body.description
+                }
+                persons.push(newPerson)
+            }
+        })        
+        this.setState({persons})
+        // console.log(id, body);
+    }
+
     // listDelete = async (id) => {
     //     const lists = this.state.lists.filter(list => list.list_id !== id)
     //     this.setState({lists})

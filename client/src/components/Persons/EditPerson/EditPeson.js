@@ -15,8 +15,7 @@ state = {
     personUpdate = async (id) => {
         const body = this.state
         await axios.put(`/persons/${id}`, body)
-        // this.onListUpdate(id)
-        console.log('works')
+        this.props.onPersonUpdate(id, body)
     }    
 
     render() {
