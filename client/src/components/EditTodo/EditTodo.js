@@ -32,6 +32,7 @@ const EditTodo = ({todo}) => {
             className="btn btn-warning" 
             data-toggle="modal" 
             data-target={`#id${todo.todo_id}`}
+            disabled //Пока не работает
         >
             <FontAwesomeIcon icon="edit" />
         </button>
