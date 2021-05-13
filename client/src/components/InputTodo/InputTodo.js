@@ -82,7 +82,7 @@ export default class InputTodo extends Component {
 
     return (
         <Fragment>
-            <h1 className="text-center mt-5">psql \! chcp 1251</h1> 
+            <h1 className="text-center mt-5">Заметки</h1> 
                 
             <form className="mt-5" 
             onSubmit={this.onSubmitForm}

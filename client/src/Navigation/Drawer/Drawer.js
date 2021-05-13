@@ -4,7 +4,7 @@ import {NavLink} from 'react-router-dom'
 import Backdrop from '../../UI/Backdrop/Backdrop'
 
 const links = [
-        {to: '/Todos', label: 'Зарубки', exact: true}, 
+        {to: '/Todos', label: 'Заметки', exact: true}, 
         {to: '/Links', label: 'Закладки', exact: false}, 
         {to: '/Lists', label: 'Списки', exact: false}, 
         // {to: '/Calendar', label: 'Календарь', exact: false}, 
